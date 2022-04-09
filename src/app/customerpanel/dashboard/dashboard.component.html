@@ -1,0 +1,402 @@
+<!-- balance -->
+<br><br><br>
+
+<!-- income expense-->
+
+<!-- Dark mode switch -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="darkmodeswitch" (click)="doCheck()">
+          <label class="form-check-label text-muted px-2 " for="darkmodeswitch">Activate Dark
+            Mode</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-4">
+    <div class="col-6" *ngFor="let data of getDashboardData |async">
+        <div class="card  mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="avatar avatar-40 p-1 shadow-sm shadow-success rounded-15">
+                            <div class="icons bg-success text-white rounded-12">
+                                <i class="{{data.icon}}"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="size-10 text-secondary mb-0">{{data.name}} </p>
+                        <p>{{data.cont}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- categories list -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card bg-theme text-white">
+            <div class="card-body pb-0">
+                <div class="row justify-content-between gx-0 mx-0 pb-3">
+                    <div class="col-auto text-center">
+                        <a routerLink="/pay" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-receipt-cutoff size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">Pay</p>
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a routerLink="/sendmoney" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-arrow-up-right size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">Estimate</p>
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a routerLink="/receivemoney" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-arrow-down-left size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">Checkout</p>
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a routerLink="/withdraw" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-bank size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">History</p>
+                    </div>
+                </div>
+
+              <!--  <div class="row justify-content-between gx-0 mx-0 collapse" id="collpasemorelink">
+                    <div class="col-auto text-center">
+                        <a routerLink="/bills" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-tv size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">TV</p>
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a routerLink="/addmoney" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-wallet2 size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">Add Money</p>
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a routerLink="/shop" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-cart size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">Buy</p>
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a routerLink="/rewards" class="avatar avatar-60 p-1 shadow-sm rounded-15 bg-opac mb-2">
+                            <div class="icons bg-success text-white rounded-12 bg-opac">
+                                <i class="bi bi-cash-coin size-22"></i>
+                            </div>
+                        </a>
+                        <p class="size-10">Cashback</p>
+                    </div>
+                </div>-->
+
+                <button class="btn btn-link mt-0 py-1 w-100 bar-more collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collpasemorelink" aria-expanded="false" aria-controls="collpasemorelink">
+                  <span class=""></span>
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- People -->
+<div class="row mb-2">
+    <div class="col">
+        <h6 class="title">Products</h6>
+    </div>
+    <div class="col-auto">
+<!--        <a routerLink="/userlist" class="small">View More</a>-->
+     </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 px-0">
+        <!-- swiper users connections -->
+        <swiper class="connectionwiper" [slidesPerView]="'auto'" [spaceBetween]="0" [pagination]="false">
+
+
+            <ng-template swiperSlide  *ngFor = " let data of getProduct" >
+                <a routerLink="/profile" class="card text-center">
+                    <div class="card-body p-1">
+<!--                        <div class="position-absolute end-0 top-0 bg-success z-index-1 online-status">-->
+<!--                        </div>-->
+                        <figure class="avatar avatar-80 shadow-sm rounded-18">
+                            <img src="{{Base_url}}assets/Product_image/{{data.product_image}}" alt="">
+                        </figure>
+                    </div>
+                </a>
+            </ng-template>
+
+
+        </swiper>
+    </div>
+</div>
+
+
+<!-- Companies -->
+<div class="row mb-2">
+    <div class="col">
+        <h6 class="title">Brands</h6>
+    </div>
+    <div class="col-auto">
+<!--        <a routerLink="/bills" class="small">Pay Bill</a>-->
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-12 px-0">
+        <!-- swiper categories -->
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 px-0">
+        <!-- swiper Companies -->
+        <swiper class="connectionwiper" [slidesPerView]="'auto'" [spaceBetween]="0" [pagination]="false">
+            <ng-template swiperSlide  *ngFor="let data of getBrandData" >
+                <a  class="card text-center">
+                    <div class="card-body p-1">
+                        <figure class="avatar avatar-80 shadow-sm rounded-18">
+                            <img src="{{Base_url}}assets/Brand_image/{{data.brand_image}}" alt="">
+                        </figure>
+                    </div>
+                </a>
+            </ng-template>
+
+
+        </swiper>
+    </div>
+</div>
+
+
+<!-- My Goals and Targets -->
+<div class="row mb-2">
+    <div class="col">
+        <h6 class="title">Market Price vs Our Price</h6>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+        <div class="card text-center overflow-hidden">
+            <figure class="m-0 p-0 position-absolute top-0 start-0 w-100 h-100 coverimg" style="background-image: url('assets/img/1.jpg');">
+                <img src="assets/img/1.jpg" alt="" style="display: none;">
+            </figure>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <div class="avatar avatar-80 rounded-circle shadow-danger p-1 shadow-sm mb-3">
+                                    <circle-progress class="d-block vm" [percent]="55" [radius]="30" [outerStrokeWidth]="6" [innerStrokeWidth]="6" [space]="-6" [outerStrokeColor]="'#f73563'" [innerStrokeColor]="'rgba(247, 53, 90, 0.2)'" [animation]="true" [animationDuration]="300" [showTitle]="true"
+                                        [showSubtitle]="false" [titleFontSize]="'25'" [backgroundPadding]="0">
+                                    </circle-progress>
+
+                                </div>
+                                <p class="text-secondary size-10 mb-0">Complan</p>
+                                <p>Market Price<span class="text-secondary size-10"> 400</span></p>
+                                <p>Our Price<span class="text-secondary size-10"> 300</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card text-center overflow-hidden">
+            <figure class="m-0 p-0 position-absolute top-0 start-0 w-100 h-100 coverimg" style="background-image: url('assets/img/2.jpg');">
+                <img src="assets/img/2.jpg" alt="" style="display: none;">
+            </figure>
+            <div class="card-body">
+                <div class="row justify-content-end">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <div class="avatar avatar-80 rounded-circle shadow-warning shadow-sm p-1 mb-3">
+                                    <circle-progress class="d-block vm" [percent]="83" [radius]="30" [outerStrokeWidth]="6" [innerStrokeWidth]="6" [space]="-6" [outerStrokeColor]="'#ffc107'" [innerStrokeColor]="'rgba(255, 193, 7, 0.2)'" [animation]="true" [animationDuration]="300" [showTitle]="true"
+                                        [showSubtitle]="false" [titleFontSize]="'25'" [backgroundPadding]="0">
+                                    </circle-progress>
+                                </div>
+                                <p class="text-secondary size-10 mb-0">Facewash</p>
+                                <p>Market Price<span class="text-secondary size-10"> 100</span></p>
+                                <p>Our Price<span class="text-secondary size-10"> 80</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- offers banner -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card theme-bg overflow-hidden">
+            <figure class="m-0 p-0 position-absolute top-0 start-0 w-100 h-100 coverimg right-center-img" style="background-image: url('assets/img/offerbg.png');">
+                <img src="assets/img/offerbg.png" alt="" style="display: none;">
+            </figure>
+            <div class="card-body py-4">
+                <div class="row">
+                    <div class="col-9 align-self-center">
+                        <h1 class="mb-3"><span class="fw-light">15% OFF</span><br />GiftCard</h1>
+                        <p>Thank you for spending with us, You have received Gift Card.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transactions -->
+<div class="row mb-3">
+    <div class="col">
+        <h6 class="title">Transactions<br><small class="fw-normal text-muted">Today, 24 Aug 2021</small>
+        </h6>
+    </div>
+    <div class="col-auto align-self-center">
+        <a routerLink="/#" class="small">View all</a>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush bg-none">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="assets/img/company4.jpg" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Food</p>
+                                <p>Zomato</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-25.00</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="assets/img/company5.png" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Travel</p>
+                                <p>Uber</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-26.00</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="assets/img/company2.png" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Food</p>
+                                <p>Starbucks</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-18.00</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="assets/img/company3.jpg" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Clothing</p>
+                                <p>Walmart</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-105.00</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blogs -->
+<div class="row mb-3">
+    <div class="col">
+        <h6 class="title">Upcomming Offers</h6>
+    </div>
+    <div class="col-auto align-self-center">
+        <a routerLink="/blog" class="small">Read more</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let data of  getOfferData" >
+        <a routerLink="#" class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="avatar avatar-60 shadow-sm rounded-10 coverimg">
+                            <img src="{{Base_url}}assets/Brand_image/{{data.offer_image}}" alt="" >
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="mb-1">{{data.title}}</p>
+                        <p class="text-muted size-12">{{data.offer_body}}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+<br><br>

@@ -1,0 +1,78 @@
+<div class="row h-100">
+    <div class="col-11 col-sm-11 mx-auto">
+        <!-- header -->
+        <div class="row">
+
+
+            <header class="header">
+                <div class="row">
+                    <div class="col">
+                        <div class="logo-small">
+                            <app-logo></app-logo>
+                        </div>
+                    </div>
+                    <div class="col-auto align-self-center">
+                        <a routerLink="/signin">Skip</a>
+                    </div>
+                </div>
+            </header>
+
+
+        </div>
+        <!-- header ends -->
+    </div>
+    <div class="col-12 px-0 mx-auto position-relative">
+        <!-- Swiper -->
+        <swiper class="swiper-container introswiper" [slidesPerView]="1" [spaceBetween]="0" [direction]="'vertical'" [pagination]="pagination" [autoplay]="{
+            delay: 2500,
+            disableOnInteraction: false
+          }" style="height: 550px">
+
+            <ng-template swiperSlide class="swiper-slide-one"   *ngFor="let data of loadBanner" >
+                <div class="row h-100">
+                    <div class="col-12 px-0 align-self-center">
+                        <div class="row mx-0">
+                            <div class="col-ld-6 position-relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="416.289" height="308.987" viewBox="0 0 416.289 308.987" class="slidebg">
+                                    <defs>
+                                        <linearGradient id="linear-gradient2" x1="0.5" x2="0.5" y2="1"
+                                            gradientUnits="objectBoundingBox">
+                                            <stop offset="0" stop-color="#09b2fd" />
+                                            <stop offset="1" stop-color="#6b00e5" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path id="introbg"
+                                        d="M868.854,286.227c-42.079,2.312-57.319,10.695-91.165,40.694S736.92,433.075,681.535,431.536,640.766,400,563.844,372.306,494.285,294.077,528.9,247.154s5.917-85.116,48.7-111.97S700.5,179.79,765.381,166.922s94.687-61.032,121.507-38.374,8.786,43,12.947,68.436,20.346,34.68,20.346,55.951S910.933,283.915,868.854,286.227Z"
+                                        transform="translate(-503.892 -122.573)" fill="url(#linear-gradient2)" />
+                                </svg>
+                                <div class="text">Budget</div>
+                                <div class="circle small one"></div>
+                                <div class="circle two"></div>
+                                <div class="circle small three"></div>
+                                <img src="{{base_url}}/assets/banner_image/{{data.image}}" alt="" class="slideimg ml-5" >
+                            </div>
+                            <div class="col-10 col-md-8 col-lg-4  col-ld-6 mx-auto">
+                                <h1 class="mb-4"><span class="text-secondary fw-light"></span><br />{{data.title}}
+                                </h1>
+                                <p class="text-secondary">{{data.body}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+
+        </swiper>
+    </div>
+
+    <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+        <div class="row ">
+            <div class="col-6 text-end d-grid">
+                <a routerLink="/signup" class="btn btn-light btn-lg shadow-sm">Sign up</a>
+            </div>
+            <div class="col-6 d-grid">
+                <a routerLink="/signin" class="btn btn-default btn-lg shadow-sm">Sign In</a>
+            </div>
+        </div>
+    </div>
+</div>

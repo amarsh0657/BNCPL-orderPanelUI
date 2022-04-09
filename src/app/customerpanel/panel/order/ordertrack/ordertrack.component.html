@@ -1,0 +1,380 @@
+<br>
+<br>
+<br>
+
+<div class="row mb-3">
+    <div class="col">
+        <p class="text-secondary">ID: {{getdata.orderid}}</p>
+    </div>
+    <div class="col-auto text-end">
+        <p class="text-secondary"> Order Request: {{getdata.order_date | date}}</p>
+    </div>
+</div>
+
+<!-- products -->
+<div class="row z-index-1 position-relative">
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <figure class="avatar avatar-80 rounded-15 border">
+                          <img src="{{base_ur}}assets/Order_image/{{getdata.productId}}" alt="" class="w-100">
+                        </figure>
+                    </div>
+                    <div class="col align-self-center">
+                        <p class="mb-0"><small class="text-muted size-12">Your Order</small>
+                        </p>
+                        <h5 *ngIf="getEstimateItemDetails == null" > Wait For Estimate Preparation... </h5>
+                      <h5 *ngIf="getEstimateItemDetails != null" > &#x20B9;
+                      {{getEstimateItemDetails[0]['total_amount']}} /-
+                      </h5>
+                        <p class="text-success"> {{getdata.order_date | date}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12 col-md-6 ">
+        <div class="card mb-3 overflow-hidden bg-opac-50">
+            <div class="card-body px-0">
+                <ul class="list-group list-group-flush w-100 bubble-sheet log-information">
+                    <li class="list-group-item">
+                        <div class="avatar avatar-15 border-success rounded-circle"></div>
+                        <p><span class="text-primary">Order Placed</span>
+                            <br/><small class="text-muted">{{getdata.order_date | date }}</small>
+                        </p>
+                    </li>
+                    <li class="list-group-item disable " *ngIf="getEstimateItemDetails === null">
+                        <span class="avatar avatar-15 border-secondary rounded-circle "></span>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                          <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                        </svg> <span class="text-muted"> Waiting Estimate ... </span>
+                            <br/><small class="text-muted "> Estimate Will Be prepared Under 24 hours</small>
+
+
+                        </p>
+                    </li>
+                  <li class="list-group-item disable " *ngIf="getEstimateItemDetails[0]['status'] == 'modication_request'">
+                    <span class="avatar avatar-15 border-secondary rounded-circle "></span>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                      <path d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+                    </svg> <span class="text-muted"> You Send Modification Request ... </span>
+                      <br/><small class="text-muted "> Estimate Will Be prepared Under 24 hours</small>
+
+
+                    </p>
+                  </li>
+                  <li class="list-group-item disable " *ngIf="getEstimateItemDetails[0]['status']=='estimate_send'">
+
+                    <span class="avatar avatar-15 border-success rounded-circle "></span>
+
+                    <p>
+                      <span class="text-muted"> Your is Estimate Arrived  </span> <br>
+                      <button type="button" class="btn btn-sm btn-primary"
+                              (click)="centerModal(ViewModel,getdata.orderid)"
+                      >View</button> |
+                      <button type="button"
+                              class="btn btn-sm btn-secondary"
+                              (click)="confirmModal(Modification, getdata.orderid)"
+                      > <small>Modification</small> </button>|
+                      <button type="button"
+                              class="btn btn-sm btn-success"
+                               (click)="confirmModal(Confirm, getdata.orderid)"
+                      >Confirm</button> |
+                      <button type="button"
+                              class="btn btn-sm btn-danger text-light"
+                              (click)="confirmModal(Reject, getdata.orderid)"
+                      >Reject</button>
+                    </p>
+                  </li>
+
+                  <li class="list-group-item disable " *ngIf="getEstimateItemDetails[0]['status']=='re_estimate_send' ">
+
+                    <span class="avatar avatar-15 border-success rounded-circle "></span>
+
+                    <p>
+                      <span class="text-muted"> Your is Estimate Arrived  </span> <br>
+                      <button type="button" class="btn btn-sm btn-primary"
+                              (click)="centerModal(ViewModel,getdata.orderid)"
+                      >View</button> |
+                      <button type="button"
+                              class="btn btn-sm btn-success"
+                              (click)="confirmModal(Confirm, getdata.orderid)"
+                      >Confirm</button> |
+                      <button type="button"
+                              class="btn btn-sm btn-danger text-light"
+                              (click)="confirmModal(Reject, getdata.orderid)"
+                      >Reject</button>
+                    </p>
+                  </li>
+
+
+                    <li class="list-group-item disable " *ngIf="getEstimateItemDetails[0]['status'] == 'conformation' ">
+                        <span class="avatar avatar-15 border-success rounded-circle "></span>
+                        <p><span class="text-primary">Estimate Confirmed</span>
+                            <br/><small class="text-muted "> {{getdata.order_date | date }}</small>
+
+                        </p>
+
+                    </li>
+                    <li class="list-group-item   " *ngIf="getEstimateItemDetails[0]['status'] == 'rejection'">
+                        <span class="avatar avatar-15 border-danger rounded-circle "></span>
+                        <p class="bg-danger"><span class="text-light">Estimate Canceled </span>
+                            <br/><small class="text-muted text-light">{{getdata.order_date | date }}</small>
+                        </p>
+                    </li>
+                    <li class="list-group-item ">
+                        <span class="avatar avatar-15 rounded-circle "></span>
+                        <p class="bg-soft"><span class="text-secondary ">Invoice</span>
+                            <br/><small class="text-muted ">2 Aug 2021,6:30 pm</small>
+                        </p>
+                    </li>
+                    <li class="list-group-item ">
+                        <span class="avatar avatar-15 rounded-circle "></span>
+                        <p><span class="text-secondary ">Shipment</span>
+                            <br/><small class="text-muted ">3 Aug 2021,6:30 pm</small>
+                        </p>
+                    </li>
+                    <li class="list-group-item ">
+                        <span class="avatar avatar-15 rounded-circle "></span>
+                        <p><span class="text-secondary ">Delivered</span>
+                            <br/><small class="text-muted ">2 Aug 2021, 1:32 pm</small>
+                        </p>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<section *ngIf="getEstimateItemDetails != null">
+<div class="row mb-4">
+    <div class="col align-self-center ">
+        <h6 class="title ">Pricing</h6>
+    </div>
+  <div class="dashed-line "></div>
+</div>
+
+<div class="row mb-3 ">
+    <div class="col ">
+        <p>Shipping Cost</p>
+    </div>
+    <div class="col-auto ">&#x20B9;{{getEstimateItemDetails[0]['shipment']}}</div>
+</div>
+<!--<div class="row mb-3 ">-->
+<!--    <div class="col ">-->
+<!--        <p>Subtotal</p>-->
+<!--    </div>-->
+<!--    <div class="col-auto ">&#x20B9;{{getEstimateItemDetails[0]['shipment']}}</div>-->
+<!--</div>-->
+<!--<div class="row mb-3 text-success ">
+    <div class="col ">
+        <p>Discount</p>
+    </div>
+    <div class="col-auto ">$ 5.00</div>
+</div>-->
+<div class="row fw-bold mb-4 ">
+    <div class="mb-3 col-12 ">
+        <div class="dashed-line "></div>
+    </div>
+    <div class="col ">
+        <p>Total</p>
+    </div>
+    <div class="col-auto ">&#x20B9;{{getEstimateItemDetails[0]['total_amount']}}</div>
+</div>
+
+</section>
+<section>
+  <div class="row mb-4 ">
+    <div class="col-12 ">
+      <a routerLink="/panel/order/order-list" class="btn btn-light shadow-sm btn-lg w-100 ">Back</a>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
+
+<ng-template #ViewModel let-modal>
+
+  <div class="modal-header">
+    <h6 class="modal-title" id="cammodalLabel">Add Address</h6>
+    <button type="button" class="btn-close" (click)="modal.dismiss( 'Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-center">
+    <div class="row">
+      <div class="col-6 text-sm-start">
+        <address>
+          <strong>Billed To:</strong><br>
+          <strong> {{getEstimateDetails.user_details.name  | uppercase}}</strong> <br>
+          {{getEstimateDetails.user_details.address}}<br>
+          Mobile : {{getEstimateDetails.user_details.mobile}}<br>
+        </address>
+      </div>
+      <div class="col-6 text-sm-end">
+        <address>
+          <strong>Shipped To:</strong><br>
+          {{getEstimateDetails.address.address}} <br>
+          {{getEstimateDetails.address.city}} <br>
+          {{getEstimateDetails.address.pin_code}} <br>
+          Mobile : {{getEstimateDetails.address.mobile}} <br>
+
+        </address>
+      </div>
+      <hr>
+      <div class="row">
+      <div class="col-md-1 col-sm-1 col-1 text-center ">
+      <small><span class="text-muted fontsize">S.No.</span></small>
+      </div>
+      <div class="col-md-4  col-sm-4   col-4 text-center ">
+        <small><span class="text-muted fontsize">P. Name</span></small>
+      </div>
+      <div class="col-md-2   col-sm-2 col-2  text-center    col-sm-2 col-2  text-center ">
+        <small><span class="text-muted fontsize">U.Price</span></small>
+
+      </div>
+      <div class="col-md-2   col-sm-2 col-2  text-center  col-sm-2 col-2  text-center  ">
+        <small><span class="text-muted fontsize">Quantity</span></small>
+      </div>
+      <div class="col-md-3 col-sm-3 col-3  text-center">
+        <small><span class="text-muted fontsize">T.Amount</span></small>
+
+      </div>
+    </div>
+      <hr>
+
+      <div class="row" *ngFor="let data of getEstimateItem; let i = index;">
+        <div class="col-md-1 col-sm-1 col-1 text-center  ">
+          <small><span class="text-muted fontsize">{{i+1}}</span></small>
+        </div>
+        <div class="col-md-4  col-sm-4   col-4 text-center   ">
+
+          <small><span class="text-muted fontsize"> {{data.item_name}}</span></small>
+        </div>
+        <div class="col-md-2   col-sm-2 col-2  text-center     ">
+
+          <small><span class="text-muted fontsize"> {{data.unit_price}}</span></small>
+
+        </div>
+        <div class="col-md-2   col-sm-2 col-2  text-center">
+          <small><span class="text-muted fontsize">{{data.quantity}}</span></small>
+        </div>
+        <div class="col-md-3 col-sm-3 col-3  text-center">
+          <small><span class="text-muted fontsize">{{data.amount}}</span></small>
+        </div>
+      </div>
+      <hr>
+      <div class="row"  >
+        <div class="col-md-1 col-sm-1 col-1 text-center  ">
+
+        </div>
+        <div class="col-md-4  col-sm-4   col-4 text-center   ">
+
+
+        </div>
+        <div class="col-md-2   col-sm-2 col-2  text-center     ">
+
+
+
+        </div>
+        <div class="col-md-2   col-sm-2 col-2  text-center">
+         <small> <span class="fontsize">Shipment:</span></small>
+        </div>
+        <div class="col-md-3 col-sm-3 col-3  text-center">
+               {{getEstimateItemDetails[0]['shipment'] }}
+        </div>
+      </div>
+      <div class="row"  >
+        <div class="col-md-1 col-sm-1 col-1 text-center  ">
+
+        </div>
+        <div class="col-md-4  col-sm-4   col-4 text-center   ">
+
+
+        </div>
+        <div class="col-md-2   col-sm-2 col-2  text-center ">
+
+
+
+        </div>
+        <div class="col-md-2   col-sm-2 col-2  text-center">
+          <small> <span class="fontsize fontW" style="font-weight: bold" >Total :</span></small>
+        </div>
+        <div class="col-md-3 col-sm-3 col-3  text-center">
+         <span class="fontsize" style="font-weight: bold" > &#x20B9; {{getEstimateItemDetails[0]['total_amount'] }} /-</span>
+        </div>
+      </div>
+    </div>
+
+    </div>
+</ng-template>
+
+<ng-template #Confirm let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="cammodalLabel">Estimate Confirm</h6>
+    <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-center">
+    <form [formGroup]="estConfirm" (ngSubmit)="onSubEstConfirm()">
+      <div class="">
+        <label>Message: </label>
+        <textarea  class="form-control" formControlName="customer_msg" ></textarea>
+      </div>
+ <div class="text-center">
+   <button type="submit"   class="form-control btn btn-sm btn-success mt-2">Confirm</button>
+ </div>
+
+    </form>
+  </div>
+
+</ng-template>
+
+<ng-template #Reject let-modal>
+  <div class="modal-header bg-red">
+    <h6 class="modal-title text-light" id="cammodalLabel">Estimate Reject</h6>
+    <button type="button" class="btn-close text-light" (click)="modal.dismiss('Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-center">
+    <form [formGroup]="estReject" (ngSubmit)="onSubEstReject()">
+      <div class="">
+        <label>Message: </label>
+        <textarea  class="form-control" formControlName="customer_msg" ></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit"   class="form-control btn btn-sm btn-danger mt-2">Confirm</button>
+      </div>
+
+    </form>
+  </div>
+
+</ng-template>
+
+
+<ng-template #Modification let-modal>
+  <div class="modal-header bg-primary-light">
+    <h6 class="modal-title " id="cammodalLabel">Modification Request</h6>
+    <button type="button" class="btn-close text-light" (click)="modal.dismiss('Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-center">
+    <form [formGroup]="modificationForm" (ngSubmit)="onSubModification()">
+      <div class="">
+        <label>Message: </label>
+        <textarea  class="form-control"
+                   formControlName="customer_msg"
+                   placeholder="Text Here.... "
+        ></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="form-control btn btn-sm btn-primary mt-2">Modification Request </button>
+      </div>
+
+    </form>
+  </div>
+
+  <ng-template>

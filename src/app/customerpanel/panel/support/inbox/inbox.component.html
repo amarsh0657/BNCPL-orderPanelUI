@@ -1,0 +1,33 @@
+<!-- Search -->
+<div class="form-group form-floating mt-5 mb-3">
+    <input type="text" class="form-control " id="search" placeholder="Search">
+    <label class="form-control-label" for="search">INBOX</label>
+    <button type="button" class="text-color-theme tooltip-btn">
+      <i class="bi bi-search"></i>
+  </button>
+</div>
+
+<!-- Chat list   -->
+<div class="row">
+    <div class="col-12 px-0" *ngFor=" let data of getData">
+        <div class="list-group list-group-flush rounded-0 bg-none">
+            <a routerLink="/messages" class="list-group-item">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="avatar avatar-50 coverimg rounded-circle" style="background-image: url(assets/img/user1.jpg);">
+                            <img src="assets/img/user1.jpg" alt="" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col align-self-center">
+                        <p class="mb-0">Admin <span class="float-end size-12 text-muted">{{data.created_at | date: 'medium'}}</span>
+                        </p>
+                        <p class="text-secondary"><i class="bi bi-check-all text-primary"></i> {{data.message}}</p>
+                    </div>
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+</div>
+<div class="mb-5"></div>

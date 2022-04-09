@@ -1,0 +1,179 @@
+<!-- Add pushcontent or fullmenu instead overlay -->
+<div class="closemenu text-muted " (click)="menuclose()">Close Menu</div>
+<div class="sidebar ">
+    <!-- user information -->
+    <div class="row my-3">
+        <div class="col-12 profile-sidebar">
+            <div class="clearfix"></div>
+            <div class="circle small one"></div>
+            <div class="circle small two"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 194.287 141.794" class="menubg">
+                <defs>
+                    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1"
+                        gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#09b2fd" />
+                        <stop offset="1" stop-color="#6b00e5" />
+                    </linearGradient>
+                </defs>
+                <path id="menubg"
+                    d="M672.935,207.064c-19.639,1.079-25.462-3.121-41.258,10.881s-24.433,41.037-49.5,34.15-14.406-16.743-50.307-29.667-32.464-19.812-16.308-41.711S500.472,130.777,531.872,117s63.631,21.369,93.913,15.363,37.084-25.959,56.686-19.794,4.27,32.859,6.213,44.729,9.5,16.186,9.5,26.113S692.573,205.985,672.935,207.064Z"
+                    transform="translate(-503.892 -111.404)" fill="url(#linear-gradient)" />
+            </svg>
+
+            <div class="row mt-3">
+                <div class="col-auto">
+                    <figure class="avatar avatar-80 rounded-20 p-1 bg-white shadow-sm">
+                        <img src="{{getProfileData.profile_image }}" alt="" class="rounded-18">
+                    </figure>
+                </div>
+                <div class="col px-0 align-self-center">
+                    <h5 class="mb-2">{{getProfileData.name | titlecase}}</h5>
+                    <p class="text-muted size-12">{{getProfileData.address | titlecase}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- user emnu navigation -->
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/panel" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-house-door"></i></div>
+                        <div class="col">Dashboard</div>
+
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-cart"></i></div>
+                        <div class="col">Order</div>
+                        <div class="arrow"><i class="bi bi-chevron-down plus"></i> <i class="bi bi-chevron-up minus"></i>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item nav-link" routerLink="order/estimateorder" routerLinkActive="active" (click)="menuclose()">
+                                <div class="avatar avatar-40  icon"><i class="bi bi-shop"></i></div>
+                                <div class="col align-self-center">Request for Estimate</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item nav-link" routerLink="order/checkout" routerLinkActive="active" (click)="menuclose()">
+                                <div class="avatar avatar-40 icon"><i class="bi bi-box-seam"></i>
+                                </div>
+                                <div class="col align-self-center">Direct Checkout</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="order/order-list" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-truck"></i></div>
+                        <div class="col">Oredr Track</div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" routerLink="/panel/estimate" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-chat-text"></i></div>
+                        <div class="col">Estimate</div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/panel/pending" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-bell"></i></div>
+                        <div class="col">Pending</div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/invoice" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-newspaper"></i></div>
+                        <div class="col">Invoice</div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/style" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-palette"></i></div>
+                        <div class="col">Shipment </div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li> -->
+
+                <!-- <li class="nav-item">
+                    <a class="nav-link" routerLink="/payment" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-file-earmark-text"></i></div>
+                        <div class="col">Payment Details </div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li> -->
+
+                <li class="nav-item">
+                    <!-- <a class="nav-link" routerLink="/pages" routerLinkActive="active" tabindex="-1" (click)="menuclose()"> -->
+                    <a class="nav-link" routerLink="/notifications" routerLinkActive="active" tabindex="-1" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-file-earmark-text"></i></div>
+                        <div class="col">History </div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-question-circle"></i></div>
+                        <div class="col">Support</div>
+                        <div class="arrow"><i class="bi bi-chevron-down plus"></i> <i class="bi bi-chevron-up minus"></i>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item nav-link" routerLink="support/compose" routerLinkActive="active" (click)="menuclose()">
+                                <div class="avatar avatar-40  icon"><i class="bi bi-shop"></i></div>
+                                <div class="col align-self-center">Compose</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item nav-link" routerLink="support/inbox" routerLinkActive="active" (click)="menuclose()">
+                                <div class="avatar avatar-40 icon"><i class="bi bi-box-seam"></i>
+                                </div>
+                                <div class="col align-self-center">Inbox</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item nav-link" routerLink="support/send" routerLinkActive="active" (click)="menuclose()">
+                                <div class="avatar avatar-40 icon"><i class="bi bi-box-seam"></i>
+                                </div>
+                                <div class="col align-self-center">Send</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/signin" routerLinkActive="active" tabindex="-1" (click)="onClick()" (click)="menuclose()">
+                        <div class="avatar avatar-40 icon"><i class="bi bi-box-arrow-right"></i></div>
+                        <div class="col">Logout</div>
+                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

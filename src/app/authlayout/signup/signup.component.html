@@ -1,0 +1,80 @@
+<div class="row h-100">
+    <div class="col-11 col-sm-11 mx-auto">
+        <!-- header -->
+        <div class="row">
+            <header class="header">
+                <div class="row">
+                    <div class="col">
+                        <div class="logo-small">
+                            <app-logo></app-logo>
+                        </div>
+                    </div>
+                    <div class="col-auto align-self-center">
+                        <a routerLink="/signin">Sing in</a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <!-- header ends -->
+    </div>
+    <form action="" #fb="ngForm" [formGroup]="createForm" (ngSubmit)="registerForm()">
+        <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+            <h1 class="mb-4"><span class="text-secondary fw-light">Create</span><br/>new account</h1>
+
+            <div class="form-floating is-valid mb-0">
+                <input type="text" formControlName="name" class="form-control" placeholder="Enter your Name " id="name">
+                <label for="Name">Name </label>
+                <button *ngIf="createForm.controls['name'].hasError('required') && (createForm.controls['name'].dirty || createForm.controls['name'].touched)" type="button" class="text-danger tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter valid Name"
+                    id="name">
+                  <i class="bi bi-info-circle"></i>
+              </button>
+            </div>
+            <span class="text-danger tsize" *ngIf="createForm.controls['name'].hasError('required') && (createForm.controls['name'].dirty || createForm.controls['name'].touched)">This field is required</span>
+            <span class="text-danger tsize " *ngIf="createForm.controls['name'].hasError('maxlength')"> You Enter Name is more then 20 Character  </span>
+            <span class="text-danger tsize " *ngIf="createForm.controls['name'].hasError('minlength')"> you Enter Name is less then 4 Character  </span>
+            <span class="text-danger tsize " *ngIf="createForm.controls['name'].hasError('pattern')"> you Enter Name Must be Character  </span>
+            <div class="form-floating is-valid mb-0">
+                <input type="text" formControlName="email" class="form-control" placeholder="Enter your Email" id="Email">
+                <label for="emailphone">Email</label>
+                <button *ngIf="createForm.controls['email'].hasError('required') && (createForm.controls['email'].dirty || createForm.controls['email'].touched)" type="button" class="text-danger tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter valid Password"
+                    id="passworderror">
+                  <i class="bi bi-info-circle"></i>
+                  </button>
+            </div>
+            <span class="text-danger tsize" *ngIf="createForm.controls['email'].hasError('required') && (createForm.controls['email'].dirty || createForm.controls['email'].touched)">This field is required</span>
+            <span class="text-danger tsize " *ngIf="createForm.controls['email'].hasError('email')"> your entered email is incorrect  </span>
+            <div class="form-floating is-valid mb-0 ">
+                <input type="number" formControlName="mobile" class="form-control " placeholder="Enter your Mobile Number " id="username ">
+                <label for="username ">Mobile</label>
+
+            </div>
+            <span class="text-danger tsize " *ngIf="createForm.controls['mobile'].hasError( 'required') && (createForm.controls[ 'mobile'].dirty || createForm.controls[ 'mobile'].touched) ">This field is required</span>
+            <span class="text-danger tsize " *ngIf="createForm.controls['mobile'].hasError('pattern')"> Please Enter Correct Mobile Number   </span>
+            <span class="text-danger tsize " *ngIf="createForm.controls['mobile'].hasError('minlength')"> Please Enter minimum 10 Digit   </span>
+
+            <div class="form-floating is-valid mb-0 ">
+                <input type="password " formControlName="password" class="form-control " placeholder="Password " id="password ">
+                <label for="password ">Password</label>
+
+                <button *ngIf="createForm.controls['password'].hasError('required') && (createForm.controls['password'].dirty || createForm.controls['password'].touched)" type="button" class="text-danger tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left"
+                    title="Enter valid Name" id="name">
+              <i class="bi bi-info-circle"></i>
+          </button>
+            </div>
+            <span class="text-danger tsize " *ngIf="createForm.controls['password'].hasError('required') && (createForm.controls[ 'password'].dirty || createForm.controls[ 'password'].touched) ">This field is required</span>
+
+
+
+            <p class="mb-3 "><span class="text-muted ">By clicking on Sign up button, you are agree to the our </span> <a routerLink="/termsandconditions ">Terms and Conditions</a></p>
+        </div>
+        <div class="col-11 col-sm-11 mt-auto mx-auto py-4 ">
+            <div class="row ">
+                <div class="col-12 d-grid ">
+                    <!-- <a routerLink="/verify" class="btn btn-default btn-lg shadow-sm" [disabled]="!createForm.valid"   >Sign Up</a> -->
+                    <button class="btn btn-default btn-lg shadow-sm " type="submit" [disabled]="!createForm.valid">  Sign Up </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

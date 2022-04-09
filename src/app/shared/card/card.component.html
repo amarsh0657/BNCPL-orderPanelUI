@@ -1,0 +1,20 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-auto">
+                <figure class="avatar avatar-60 rounded-15 border">
+                    <img src="{{img_path}}" alt="" class="w-100">
+                </figure>
+            </div>
+            <div class="col align-self-center">
+                <p class="mb-0"><small class="text-muted size-12"> Order ID: {{orderId}}</small> </p>
+                <p class="mb-0"><small class="text-muted size-12"> Date : {{date | date }}</small> </p>
+                <h5> Status : {{status}}</h5>
+            </div>
+            <div class="col-auto align-self-center ps-0">
+                <a routerLink="">Track <i class="bi bi-chevron-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+</div>

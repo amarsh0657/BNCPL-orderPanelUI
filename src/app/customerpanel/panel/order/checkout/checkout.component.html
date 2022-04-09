@@ -1,0 +1,166 @@
+<div class="row">
+    <div class="col-12">
+        <div class="col-11 col-sm-11 mt-5 mx-auto py-4">
+            <div class="row ">
+                <!-- <div class="col-6 text-end d-grid">
+                    <a class="btn btn-light btn-lg shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collpasemorelink" aria-expanded="ture" aria-controls="collpasemorelink">Upload List</a>
+                </div> -->
+                <!-- <div class="col-6 d-grid">
+                    <a class="btn btn-light btn-lg shadow-sm" disabled type="button" data-bs-toggle="collapse" data-bs-target="#collpasemorelink1" aria-expanded="false" aria-controls="collpasemorelink1"> Entery</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contaner">
+    <div class="row">
+        <div class="col-12 col-md-12   ">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12  text-center ">
+                            <h3>Upload List </h3>
+                            <div class="hline-bottom"></div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <form action="" [formGroup]="checkOutForm" (ngSubmit)="onSubmitCheckOut()">
+                                    <div class="col mt-2 text-center">
+                                        <label for=""> Upload File </label>
+                                        <input type="file" formControlName="order_image" class="form-control" (change)="onFileChange($event)" placeholder="Name">
+                                        <span class="text-danger" *ngIf="checkOutForm.controls['order_image'].hasError('required')  && (checkOutForm.controls['order_image'].dirty || checkOutForm.controls['order_image'].touched )"> This field is Required</span>
+
+                                    </div>
+
+
+                                    <div class="col  mt-4">
+                                        <!--
+                                        <button class="btn btn-default shadow-sm" type="button" data-bs-target="#cammodal" data-bs-toggle="modal"><i class="bi bi-plus size-24"    ></i>  Add Address  </button> -->
+                                        <button class="btn btn-default shadow-sm" type="button" (click)="centerModal(centerDataModal)"><i class="bi bi-plus size-24"    ></i>  Add Address  </button>
+
+                                        <span class="text-danger" *ngIf="checkOutForm.controls['address_id'].hasError('required')  && (checkOutForm.controls['address_id'].dirty || checkOutForm.controls['address_id'].touched )"> This field is Required</span>
+                                        <div class="hline-bottom mt-0"></div>
+                                        <div class="card-body" *ngFor="let data of getData">
+
+                                            <div class="row">
+                                                <div class="col text-secondary">
+                                                    <input type="radio" class="radio-style" formControlName="address_id" [value]="data.id">
+                                                    <i class="bi bi-phone" *ngIf="data"></i> {{data.mobile}} | <i class="bi bi-geo-alt"></i> {{data.address}}, {{data.city}}, {{data.pen_code}}
+                                                </div>
+                                                <div class="col-auto text-end">
+                                                    <a class="btn btn-44 btn-light" (click)="centerModal(edit)"><i class="bi bi-pencil  text-color-theme size-22"></i></a>
+                                                    <a class="btn btn-44 btn-light" (click)=" deleteAddress(data.id)"> <i class="bi bi-trash text-color-theme size-22"></i></a>
+                                                    <!--  <br> -->
+                                                    <!-- <small class="text-secondary">2.5km <i class="bi bi-geo-alt"></i></small> -->
+                                                    <!-- model -->
+
+                                                    <!-- camera modal-->
+                                                    <ng-template #edit let-modal>
+                                                        <div class="modal-header">
+                                                            <h6 class="modal-title" id="cammodalLabel">Edit Address</h6>
+                                                            <button type="button" class="btn-close" (click)="modal.dismiss( 'Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <form class="" [formGroup]="editAddressForm" (ngSubmit)="editAddresaData(data.id)">
+                                                                <div class="form-floating mb-3">
+                                                                    <input type="text" class="form-control" id="address" [(ngModel)]="data.address" formControlName="address" placeholder="Address">
+                                                                    <label for="pincode">Address</label>
+
+                                                                    <span class="text-danger" *ngIf="editAddressForm.controls['address'].hasError('required') && (editAddressForm.controls['address'].touched || editAddressForm.controls['address'].dirty)"> This field Required</span>
+                                                                </div>
+                                                                <div class="form-floating mb-3">
+                                                                    <input type="text" class="form-control" id="city" formControlName="city" placeholder="city" [(ngModel)]="data.city">
+                                                                    <label for="pincode">City</label>
+                                                                    <span class="text-danger " *ngIf="editAddressForm.controls['city'].hasError('required') && (editAddressForm.controls['city'].touched || editAddressForm.controls['city'].dirty)"> This field Required</span>
+
+                                                                </div>
+                                                                <div class="form-floating mb-3">
+                                                                    <input type="number" class="form-control" id="pincode" formControlName="pen_code" [(ngModel)]="data.pen_code" placeholder="Pincode">
+                                                                    <label for="pincode">Pincode</label>
+                                                                    <span class="text-danger" *ngIf="editAddressForm.controls['pen_code'].hasError('required') && (editAddressForm.controls['pen_code'].touched || editAddressForm.controls['pen_code'].dirty)"> This field Required</span>
+                                                                    <span class="text-danger" *ngIf="editAddressForm.controls['pen_code'].hasError('maxlength')"> Pin-Code Must be 6 Numeric </span>
+                                                                </div>
+                                                                <div class="form-floating mb-3">
+                                                                    <input type="number" class="form-control" formControlName="mobile" [(ngModel)]="data.mobile" id="mobile" placeholder="Mobile">
+                                                                    <label for="pincode">Mobile</label>
+                                                                    <span class="text-danger " *ngIf="editAddressForm.controls['mobile'].hasError('required') && (editAddressForm.controls['mobile'].touched || editAddressForm.controls['mobile'].dirty)"> This field Required</span>
+
+                                                                </div>
+
+                                                                <div class="d-grid"><button type="submit" class="btn btn-lg btn-default shadow-sm" [disabled]="!editAddressForm.valid">Add</button></div>
+                                                            </form>
+                                                        </div>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mt-5 text-center">
+
+                                        <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary shadow-sm" [disabled]="!checkOutForm.valid">Direct CheckOut</button></div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- camera modal-->
+        <ng-template #centerDataModal let-modal>
+            <div class="modal-header">
+                <h6 class="modal-title" id="cammodalLabel">Add Address</h6>
+                <button type="button" class="btn-close" (click)="modal.dismiss( 'Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <form class="" [formGroup]="addAddressForm" (ngSubmit)=" addAddresaData()">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address">
+                        <label for="pincode">Address</label>
+
+                        <span class="text-danger " *ngIf="addAddressForm.controls['address'].hasError('required') && (addAddressForm.controls['address'].touched || addAddressForm.controls['address'].dirty)"> This field Required</span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="city" formControlName="city" placeholder="city">
+                        <label for="pincode">City</label>
+                        <span class="text-danger " *ngIf="addAddressForm.controls['city'].hasError('required') && (addAddressForm.controls['city'].touched || addAddressForm.controls['city'].dirty)"> This field Required</span>
+
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="pincode" formControlName="pen_code" placeholder="Pincode">
+                        <label for="pincode">Pincode</label>
+                        <span class="text-danger" *ngIf="addAddressForm.controls['pen_code'].hasError('required') && (addAddressForm.controls['pen_code'].touched || addAddressForm.controls['pen_code'].dirty)"> This field Required</span>
+                        <span class="text-danger" *ngIf="addAddressForm.controls['pen_code'].hasError('maxlength')"> Pin-Code Must be 6 Numeric </span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" formControlName="mobile" id="mobile" placeholder="Mobile">
+                        <label for="pincode">Mobile</label>
+                        <span class="text-danger " *ngIf="addAddressForm.controls['mobile'].hasError('required') && (addAddressForm.controls['mobile'].touched || addAddressForm.controls['mobile'].dirty)"> This field Required</span>
+
+                    </div>
+
+                    <div class="d-grid"><button type="submit" class="btn btn-lg btn-default shadow-sm" [disabled]="!addAddressForm.valid">Add</button></div>
+                </form>
+            </div>
+
+        </ng-template>
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<br>
+<br>

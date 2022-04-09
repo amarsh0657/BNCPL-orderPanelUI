@@ -1,0 +1,50 @@
+<div class="row h-100">
+    <div class="col-11 col-sm-11 mx-auto">
+        <!-- header -->
+        <div class="row">
+            <header class="header">
+                <div class="row">
+                    <div class="col">
+                        <div class="logo-small">
+                            <app-logo></app-logo>
+                        </div>
+                    </div>
+                    <div class="col-auto align-self-center">
+                        <a routerLink="/signin">Sing in</a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <!-- header ends -->
+    </div>
+    <form action="" [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
+        <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+            <h1 class="mb-3"><span class="text-secondary fw-light">Verify your</span><br/>Email ID</h1>
+            <p class="text-secondary mb-4">We have send you an email with OTP with instruction.</p>
+            <div class="form-group form-floating mb-3 is-valid">
+                <input type="number" formControlName="otp" class="form-control" id="OTP" placeholder="Enter OTP">
+                <label class="form-control-label" for="OTP">Enter OTP </label>
+            </div>
+            <span class="text-danger tsize" *ngIf="verifyForm.controls['otp'].hasError('required') && (verifyForm.controls['otp'].dirty || verifyForm.controls['otp'].touched)">This field is required</span>
+            <!-- <span class="text-danger tsize " *ngIf="verifyForm.controls['otp'].hasError('minlength')"> you Enter Name is less then 4 Character  </span> -->
+        </div>
+        <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+            <div class="row ">
+                <div class="col-auto text-center mx-auto">
+                    <span class="progressstimer" *ngIf="!timenull">
+                    <img src="assets/img/progress.png" alt="">
+                    <span class="timer" id="timer">{{display}}</span>
+                    </span>
+                    <br />
+                    <p class="mb-3" *ngIf="timenull"><span class="text-muted">Didn't received yet?</span> <a (click)="resendLink()">Resend OTP</a>
+                    </p>
+                </div>
+                <div class="col-12 d-grid">
+                    <!-- <a routerLink="/thankyou2" class="btn btn-default btn-lg shadow-sm">Verify Account</a> -->
+                    <button class="btn btn-default btn-lg shadow-sm" type="submit" [disabled]="!verifyForm.valid"> Verify Account </button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            <div *ngFor="let data of getData">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-auto">
+                                <figure class="avatar avatar-60 rounded-15 border">
+                                    <img src="{{base_ur}}assets/Order_image/{{data.image_path}}" alt="" class="w-100">
+                                </figure>
+                            </div>
+                            <div class="col align-self-center">
+                                <p class="mb-0"><small class="text-muted size-12"> Order ID: {{data.order_id}}</small> </p>
+                                <span class="mb-0"><small class="text-muted size-12"> Date : {{data.crated_at | date }}</small> </span>
+
+                                <div class=" bg-secondary text-center m-1 p-1" *ngIf="data.status === 'conform'">
+                                    <span class="text-light">Confirmed</span>
+                                </div>
+                                <div class=" bg-warning text-center m-1 p-1" *ngIf="data.status === 'pending'">
+                                    <span class="text-light">Pending</span>
+                                </div>
+                                <div class=" bg-danger text-center m-1 p-1" *ngIf="data.status === 'rejection'">
+                                    <span class="text-light">Cancel</span>
+                                </div>
+                                <div class="bg-primary text-center m-1 p-1" *ngIf="data.status === 'under_Proccess'">
+                                    <span class="text-light">Under Process</span>
+                                </div>
+
+                                <div class="bg-success text-center m-1 p-1" *ngIf="data.status === 'completed'">
+                                    <span class="text-light"> Completed  </span>
+                                </div>
+                            </div>
+                            <div class="col-auto align-self-center ps-0">
+                                <a routerLink="">Track <i class="bi bi-chevron-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
