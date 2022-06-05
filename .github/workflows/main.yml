@@ -2,39 +2,28 @@ name: Build and deploy
 on:
   push:
     branches: [master]
-  workflow_dispatch:
 
 jobs:
-  build:
-    name: Build ⛏
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@main
-      - name: Install dependencies
-        run: npm ci
-      - name: Build dependencies
-        run: npm run build
-      - name: Archive production artifact
-        uses: actions/upload-artifact@main
-        with:
-          name: dist
-          path: dist
-  deploy:
-    name: Deploy 🚀
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout repository
-        uses: actions/checkout@main
-      - name: Download artifact
-        uses: actions/download-artifact@main
-        with: 
-          name: dist/finwallapp-v2/
-          path: dist/finwallapp-v2/
-      - name: Sync files to hosting
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with: 
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: 🔨 Build Project
+      run: |
+        npm install
+        npm run build
+        
+    - name: Sync files to hosting
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with: 
           server:  ftp.businesshai.com
           username: ui@businesshai.com
           password: ${{ secrets.ftp_password }}
