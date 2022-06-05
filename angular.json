@@ -21,6 +21,7 @@
 
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                      "allowedCommonJsDependencies": ["chart.js"],
                         "outputPath": "dist/finwallapp-v2",
                         "index": "src/index.html",
                         "main": "src/main.ts",
