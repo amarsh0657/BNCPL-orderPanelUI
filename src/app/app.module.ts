@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerpanelModule } from './customerpanel/customerpanel.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -51,6 +52,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -129,6 +129,9 @@
                             "src/assets/vendor/bootstrap-5/js/bootstrap.bundle.min.js"
                         ]
                     }
+                },
+                "deploy": {
+                    "builder": "angular-cli-ghpages:deploy"
                 }
             }
         }
