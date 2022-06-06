@@ -12,10 +12,50 @@
         </div>
     </div>
 </div>
+
+<div class="col-12 col-md-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Order Tabs</h4>
+     
+      <ul ngbNav #justifiednav="ngbNav" [activeId]="1" class="nav-pills nav-justified">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>
+            <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+            <span >Upload</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>
+            <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+            <span >Type</span>
+          </a>
+          <ng-template ngbNavContent>
+            <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+          </ng-template>
+        </li>
+       
+        
+      </ul>
+      <div [ngbNavOutlet]="justifiednav"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class="contaner">
     <div class="row">
         <div class="col-12 col-md-12   ">
             <div class="card mb-3">
+
+               
+              <ng-template #TabContent>     
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12  text-center ">
@@ -104,14 +144,55 @@
 
                         </div>
                     </div>
+                    </div>
+            
+                  </ng-template>
 
-
+                  <ng-template #TabContent1>
+                      <br>
+                    <div class="inner-repeater mb-4">
+                        <form [formGroup]="form">
+                          <div class="inner mb-0 row" formArrayName="member">
+                            <label class="col-form-label col-lg-2">Add Product</label>
+                            <div class="inner col-lg-10 ms-md-auto" *ngFor="let data of member.controls; index as i;">
+                              <div class="mb-3 row align-items-center">
+                                <div class="col-md-6">
+                                  <input type="text" [formControlName]="i" class="inner form-control" id="name"
+                                    placeholder="Enter Product Name..." />
+                                </div>
+                                <div class="col-md-6">
+                                  <input type="text" [formControlName]="i" class="inner form-control" id="qty"
+                                    placeholder="Enter Product qty..." />
+                                </div><br>
+                                <div class="row justify-content-end">
+                                  <div class="col-lg-10">
+                                 <br>
+                                    <input type="button" class="btn btn-primary inner" value="Delete"
+                                      (click)="deleteMember(i)" />
+                                        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                      <input data-repeater-create type="button" class="btn btn-success inner" value="Add Product"
+                              (click)="addMember()" />
+                                    </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                       
+                        <div class="col mt-5 text-center">
+                          <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary shadow-sm" >Order</button></div>
+                      </div>
+                      </div>
+                    </ng-template>
+                   
 
 
                 </div>
             </div>
         </div>
-
+         
+        
 
         <!-- camera modal-->
         <ng-template #centerDataModal let-modal>
@@ -159,7 +240,7 @@
 
     </div>
 
-</div>
+
 
 <br>
 <br>

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AddressService } from 'src/app/core/customer/address/address.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from 'src/app/core/customer/order/order.service';
-
 
 
 @Component({
@@ -13,13 +12,28 @@ import { OrderService } from 'src/app/core/customer/order/order.service';
   styleUrls: ['./estimateorder.component.scss']
 })
 export class EstimateorderComponent implements OnInit {
+  breadCrumbItems: Array<{}>;
+  isCollapsed: boolean;
   state = "closed";
   addAddressForm: FormGroup;
   editAddressForm: FormGroup;
   checkOutForm: FormGroup ;
   updateId: number;
   getData:any;
-
+   
+  form = new FormGroup({
+    member: new FormArray([
+      new FormControl(''),
+    ]),
+  });
+ 
+  get member(): FormArray { return this.form.get('member') as FormArray; }
+  addMember() {
+    this.member.push(new FormControl());
+  }
+  deleteMember(i: number) {
+    this.member.removeAt(i);
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -30,13 +44,13 @@ export class EstimateorderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-
+    this.breadCrumbItems = [{ label: 'UI Elements' }, { active: true }];
+    this.isCollapsed = false;
 
     this.checkOutForm = this.fb.group({
       address_id: ['',[Validators.required]],
       order_image: [ null,[Validators.required] ],
-
+      
     })
 
 
