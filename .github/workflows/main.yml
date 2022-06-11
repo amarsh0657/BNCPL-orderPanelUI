@@ -28,3 +28,23 @@ jobs:
           server:  ftp.businesshai.com
           username: ui@businesshai.com
           password: ${{ secrets.ftp_password }}
+      
+      
+    - name: Send mail
+      if: always()
+      uses: dawidd6/action-send-mail@v2
+      with:
+                # mail server settings
+                server_address: mail.businesshai.com
+                server_port: 465
+                # user credentials
+                username: ${{ secrets.EMAIL_USERNAME }}
+                password: ${{ secrets.EMAIL_PASSWORD }}
+                # email subject
+                subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+                # email body as text
+                body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} URL:https://order-post.businesshai.com
+                # comma-separated string, send email to
+                to: amarsh0657@gmail.com,bncivitech@bncthirdeye.com,alashish.ranjan1@gmail.com
+                # from email name
+                from: BNCPL | Application Devlopment          
