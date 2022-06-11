@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/adminapi/BNCPL-orderpanelApi/',
+  baseUrl: 'https://restapi.businesshai.com/',
   defaultauth: 'fackbackend',
   OAUTH_CLIENT: 'testclient',
   OAUTH_SECRET: 'testsecret',
