@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/orderpanelApi/',
-  //baseUrl: 'https://restapi.businesshai.com/',
+  baseUrl: 'https://restapi.businesshai.com/',
   defaultauth: 'fackbackend',
   OAUTH_CLIENT: 'testclient',
   OAUTH_SECRET: 'testsecret',

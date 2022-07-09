@@ -9,35 +9,34 @@
 </div>
 
 <div class="col-12 col-md-12">
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Order Tabs</h4>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Order Tabs</h4>
+            <ul ngbNav #justifiednav="ngbNav" [activeId]="1" class="nav-pills nav-justified">
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink>
+                        <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                        <span>Upload</span>
+                    </a>
+                    <ng-template ngbNavContent>
+                        <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>
+                        <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                        <span>Type</span>
+                    </a>
+                    <ng-template ngbNavContent>
+                        <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+                    </ng-template>
+                </li>
 
-      <ul ngbNav #justifiednav="ngbNav" [activeId]="1" class="nav-pills nav-justified">
-        <li [ngbNavItem]="1">
-          <a ngbNavLink>
-            <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-            <span >Upload</span>
-          </a>
-          <ng-template ngbNavContent>
-            <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
-          </ng-template>
-        </li>
-        <li [ngbNavItem]="2">
-          <a ngbNavLink>
-            <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-            <span >Type</span>
-          </a>
-          <ng-template ngbNavContent>
-            <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
-          </ng-template>
-        </li>
 
-
-      </ul>
-      <div [ngbNavOutlet]="justifiednav"></div>
+            </ul>
+            <div [ngbNavOutlet]="justifiednav"></div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -49,47 +48,47 @@
             <div class="card mb-3">
 
 
-              <ng-template #TabContent>
+                <ng-template #TabContent>
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12  text-center ">
-                            <h3>Upload List </h3>
-                            <div class="hline-bottom"></div>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <form action="" [formGroup]="checkOutForm" (ngSubmit)="onSubmitCheckOut()">
-                                    <div class="col mt-2 text-center">
-                                        <label for=""> Upload File </label>
-                                        <input type="file" formControlName="order_image" class="form-control" (change)="onFileChange($event)" placeholder="Name">
-                                        <span class="text-danger" *ngIf="checkOutForm.controls['order_image'].hasError('required')  && (checkOutForm.controls['order_image'].dirty || checkOutForm.controls['order_image'].touched )"> This field is Required</span>
-
-                                    </div>
-
-
-                                  <app-order-address  (addressEvent) = "receiveAddressEvent($event)" ></app-order-address>
-
-                                    <div class="col mt-5 text-center">
-                                        <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary shadow-sm" [disabled]="!checkOutForm.valid">Estimate Request</button></div>
-                                    </div>
-                                </form>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12  text-center ">
+                                <h3>Upload List </h3>
+                                <div class="hline-bottom"></div>
                             </div>
+                            <div class="col">
+                                <div class="row">
+                                    <form action="" [formGroup]="checkOutForm" (ngSubmit)="onSubmitCheckOut()">
+                                        <div class="col mt-2 text-center">
+                                            <label for=""> Upload File </label>
+                                            <input type="file" formControlName="order_image" class="form-control" (change)="onFileChange($event)" placeholder="Name">
+                                            <span class="text-danger" *ngIf="checkOutForm.controls['order_image'].hasError('required')  && (checkOutForm.controls['order_image'].dirty || checkOutForm.controls['order_image'].touched )"> This field is Required</span>
 
+                                        </div>
+
+
+                                        <app-order-address (addressEvent)="receiveAddressEvent($event)"></app-order-address>
+
+                                        <div class="col mt-5 text-center">
+                                            <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary shadow-sm" [disabled]="!checkOutForm.valid">Estimate Request</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    </div>
 
-                  </ng-template>
+                </ng-template>
 
-                  <ng-template #TabContent1>
+                <ng-template #TabContent1>
                     <app-type-order></app-type-order>
-                    </ng-template>
-                </div>
+                </ng-template>
             </div>
         </div>
-
     </div>
+
+</div>
 
 
 
