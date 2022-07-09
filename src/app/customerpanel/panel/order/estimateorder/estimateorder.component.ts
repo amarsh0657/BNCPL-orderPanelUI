@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AddressService } from 'src/app/core/customer/address/address.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,12 +13,16 @@ import { OrderService } from 'src/app/core/customer/order/order.service';
   styleUrls: ['./estimateorder.component.scss']
 })
 export class EstimateorderComponent implements OnInit {
+  breadCrumbItems: Array<{}>;
+  isCollapsed: boolean;
   state = "closed";
-  addAddressForm: FormGroup;
-  editAddressForm: FormGroup;
   checkOutForm: FormGroup ;
   updateId: number;
   getData:any;
+   addressId:any;
+
+
+
 
 
   constructor(
@@ -30,32 +34,13 @@ export class EstimateorderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-
-
+    this.breadCrumbItems = [{ label: 'UI Elements' }, { active: true }];
+    this.isCollapsed = false;
     this.checkOutForm = this.fb.group({
-      address_id: ['',[Validators.required]],
+      address_id: [''],
       order_image: [ null,[Validators.required] ],
 
     })
-
-
-    this.addAddressForm = this.fb.group({
-      address: ['',[Validators.required]],
-      pen_code: ['',[Validators.required, Validators.maxLength(6)] ],
-      city: ['',[Validators.required]],
-      mobile: ['',[Validators.required]],
-    })
-
-
-    this.editAddressForm = this.fb.group({
-      address: ['',[Validators.required]],
-      pen_code: ['',[Validators.required]],
-      city: ['',[Validators.required]],
-      mobile: ['',[Validators.required]],
-    })
-    this.getAddressData()
-
 
   }
 
@@ -90,56 +75,9 @@ export class EstimateorderComponent implements OnInit {
     }
   }
 
-  addAddresaData(){
-  const formData = new FormData();
-  formData.append('address', this.addAddressForm.get('address')?.value);
-  formData.append('pen_code', this.addAddressForm.get('pen_code')?.value);
-  formData.append('city', this.addAddressForm.get('city')?.value);
-  formData.append('mobile', this.addAddressForm.get('mobile')?.value);
-     return this.address.addAddress(formData).subscribe(
-       (res:any) => {
-         this.toastr.success(res.msg);
-         this.getAddressData();
-        this.modalService.dismissAll();
-        this.addAddressForm.reset()
-       }
-     )
-  }
 
 
-  editAddresaData( id:number){
-    const formData = new FormData();
-      formData.append('address', this.editAddressForm.get('address')?.value);
-      formData.append('pen_code', this.editAddressForm.get('pen_code')?.value);
-      formData.append('city', this.editAddressForm.get('city')?.value);
-      formData.append('mobile', this.editAddressForm.get('mobile')?.value);
-         return this.address.editAddress(formData, id).subscribe(
-           (res:any) => {
-             this.toastr.success(res.msg);
-              this.modalService.dismissAll();
-              this.addAddressForm.reset()
-           }
-         )
-      }
 
-  getAddressData(){
-    return this.address.getAddress().subscribe
-    (
-      (data:any) => {
-            this.getData = data;
-      }
-    )
-  }
-
-
-  deleteAddress( id : number){
-    return this.address.deleteAddress(id).subscribe(
-      (data:any) => {
-      this.getAddressData();
-      this.toastr.success(data.messages.success)
-      }
-    )
-  }
 
   onFileChange(event:any) {
 
@@ -152,17 +90,30 @@ export class EstimateorderComponent implements OnInit {
   }
 
   onSubmitCheckOut(){
+
+    if(this.addressId == undefined){
+      this.toastr.info("Could you please select the Address!")
+    }else {
+
     const formData = new FormData();
     formData.append( 'order_image', this.checkOutForm.get('order_image')?.value);
-    formData.append( 'address_id', this.checkOutForm.get('address_id')?.value);
+    formData.append( 'address_id', this.addressId);
 
    this.order.estimateRequest(formData).subscribe(
      (res:any) => {
         this.toastr.success(res.msg)
         this.checkOutForm.reset();
+        this.addressId = undefined
      }
    )
+    }
 
+  }
+
+  receiveAddressEvent(event:any){
+     this.addressId = event;
+  //   alert(this.addressId);
+     return this.addressId;
   }
 
 

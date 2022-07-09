@@ -7,6 +7,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderlistComponent } from './orderlist/orderlist.component';
 import { OrdertrackComponent } from './ordertrack/ordertrack.component';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import {SharedModule} from "../../../shared/shared.module";
+import { TypeOrderComponent } from './type-order/type-order.component';
+import {UtilityModule} from "../../../utility/utility.module";
 
 
 @NgModule({
@@ -14,12 +18,15 @@ import { OrdertrackComponent } from './ordertrack/ordertrack.component';
     CheckoutComponent,
     EstimateorderComponent,
     OrderlistComponent,
-    OrdertrackComponent
+    OrdertrackComponent,
+    TypeOrderComponent
   ],
   imports: [
     CommonModule,
     OrderRoutingModule,
-    ReactiveFormsModule
+    NgbNavModule,
+    ReactiveFormsModule,
+    UtilityModule
 
   ]
 })

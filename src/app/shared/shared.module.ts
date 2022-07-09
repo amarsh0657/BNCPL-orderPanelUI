@@ -6,11 +6,13 @@ import { CardComponent } from './card/card.component';
 
 
 
+
 @NgModule({
   declarations: [
     LogoComponent,
     LoaderComponent,
-    CardComponent
+    CardComponent,
+
   ],
   imports: [
     CommonModule

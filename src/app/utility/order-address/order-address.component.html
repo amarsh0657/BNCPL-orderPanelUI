@@ -1,0 +1,119 @@
+<div class="col  mt-4">
+
+
+         <div  class="list-group-item  text-center">
+           Select Address |  <button class="btn btn-sm btn-primary " type="button" (click)="centerModal(centerDataModal)"    ><i class="bi bi-plus size-24"></i>  Add Address  </button>
+         </div>
+
+    <section *ngFor="let getdata of getAddrsData; let i = 'index'"  (click)="sendAddressId()">
+          <div class="card m-1"  (click)="clickEvent(i)"
+               [class.selected]="getdata.id === addressId"
+          >
+           <div class="card-body rounded-5">
+             <div class="row">
+               <div class="col">
+                 <address>
+                   <i class="bi bi-geo-alt"></i> {{getdata.address}},
+                   <i class="bi bi-phone" ></i> {{getdata.mobile}},
+                   <p>Pin Code : {{getdata.pen_code}}</p>
+
+                 </address>
+               </div>
+               <div class="col-auto text-end">
+                 <a class="btn btn-44 btn-light text-center p-2"  (click)="centerModal(edit)"><i class="bi bi-pencil  text-color-theme size-22"></i></a>
+                 <a class="btn btn-44 btn-light text-center p-2" (click)=" deleteAddress()" > <i class="bi bi-trash text-color-theme size-22"></i></a>
+               </div>
+
+             </div>
+
+           </div>
+         </div>
+
+    </section>
+
+       </div>
+
+<!-- camera modal-->
+<ng-template #centerDataModal let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="cammodalLabel">Add Address</h6>
+    <button type="button" class="btn-close" (click)="modal.dismiss( 'Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-center">
+    <form class="" [formGroup]="addAddressForm" (ngSubmit)="addAddresaData()">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address">
+        <label for="pincode">Address</label>
+
+        <span class="text-danger " *ngIf="addAddressForm.controls['address'].hasError('required') && (addAddressForm.controls['address'].touched || addAddressForm.controls['address'].dirty)"> This field Required</span>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="city" formControlName="city" placeholder="city">
+        <label for="pincode">City</label>
+        <span class="text-danger " *ngIf="addAddressForm.controls['city'].hasError('required') && (addAddressForm.controls['city'].touched || addAddressForm.controls['city'].dirty)"> This field Required</span>
+
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="pincode" [(ngModel)]="getIpData.postal" formControlName="pen_code" placeholder="Pincode">
+        <label for="pincode">Pincode</label>
+        <span class="text-danger" *ngIf="addAddressForm.controls['pen_code'].hasError('required') && (addAddressForm.controls['pen_code'].touched || addAddressForm.controls['pen_code'].dirty)"> This field Required</span>
+        <span class="text-danger" *ngIf="addAddressForm.controls['pen_code'].hasError('maxlength')"> Pin-Code Must be 6 Numeric </span>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" formControlName="mobile" id="mobile" placeholder="Mobile">
+        <label for="pincode">Mobile</label>
+        <span class="text-danger " *ngIf="addAddressForm.controls['mobile'].hasError('required') && (addAddressForm.controls['mobile'].touched || addAddressForm.controls['mobile'].dirty)"> This field Required</span>
+      </div>
+
+      <address>
+        {{getIpData.city}}, {{getIpData.region}} ,{{getIpData.country_name}}
+      </address>
+
+
+      <div class="d-grid"><button type="submit" class="btn btn-lg btn-default shadow-sm" [disabled]="!addAddressForm.valid">Add</button></div>
+    </form>
+  </div>
+
+</ng-template>
+
+<ng-template #edit let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="cammodalLabel">Edit Address</h6>
+    <button type="button" class="btn-close" (click)="modal.dismiss( 'Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-center">
+    <form class="" [formGroup]="editAddressForm" (ngSubmit)="editAddresaData()">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="address" [(ngModel)]="getAddressDataById.address" formControlName="address" placeholder="Address">
+        <label for="pincode">Address</label>
+
+        <span class="text-danger" *ngIf="editAddressForm.controls['address'].hasError('required') && (editAddressForm.controls['address'].touched || editAddressForm.controls['address'].dirty)"> This field Required</span>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="city" formControlName="city" placeholder="city" [(ngModel)]="getAddressDataById.city">
+        <label for="pincode">City</label>
+        <span class="text-danger " *ngIf="editAddressForm.controls['city'].hasError('required') && (editAddressForm.controls['city'].touched || editAddressForm.controls['city'].dirty)"> This field Required</span>
+
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="pincode" formControlName="pen_code" [(ngModel)]="getAddressDataById.pen_code" placeholder="Pincode">
+        <label for="pincode">Pincode</label>
+        <span class="text-danger" *ngIf="editAddressForm.controls['pen_code'].hasError('required') && (editAddressForm.controls['pen_code'].touched || editAddressForm.controls['pen_code'].dirty)"> This field Required</span>
+        <span class="text-danger" *ngIf="editAddressForm.controls['pen_code'].hasError('maxlength')"> Pin-Code Must be 6 Numeric </span>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" formControlName="mobile" [(ngModel)]="getAddressDataById.mobile" id="mobile" placeholder="Mobile">
+        <label for="pincode">Mobile</label>
+        <span class="text-danger " *ngIf="editAddressForm.controls['mobile'].hasError('required') && (editAddressForm.controls['mobile'].touched || editAddressForm.controls['mobile'].dirty)"> This field Required</span>
+
+      </div>
+
+      <div class="d-grid"><button type="submit" class="btn btn-lg btn-default shadow-sm" [disabled]="!editAddressForm.valid">Add</button></div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+
+

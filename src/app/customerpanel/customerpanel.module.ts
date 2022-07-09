@@ -21,7 +21,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NgCircleProgressModule.forRoot(),
     SwiperModule,
     LayoutModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+
   ]
 })
 export class CustomerpanelModule { }

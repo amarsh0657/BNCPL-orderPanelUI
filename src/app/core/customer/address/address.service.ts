@@ -42,4 +42,8 @@ export class AddressService {
               }
 
 
+              getIpAddress(){
+               return this.http.get('https://ipapi.co/json');
+              }
+
 }
