@@ -21,7 +21,9 @@ export class OrderService {
   estimateRequest( formData:any){
     return this.http.post( environment.baseUrl + 'customer/orderimage/'  + this.token.getRefreshToken() , formData)
 }
-
+  estimateTypeRequest( formData:any){
+    return this.http.post( environment.baseUrl + 'customer/ordertype/'  + this.token.getRefreshToken() , formData)
+  }
 
 
 }

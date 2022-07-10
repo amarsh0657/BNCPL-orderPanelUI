@@ -12,8 +12,8 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Order Tabs</h4>
-            <ul ngbNav #justifiednav="ngbNav" [activeId]="1" class="nav-pills nav-justified">
-                <li [ngbNavItem]="1">
+            <ul ngbNav #justifiednav="ngbNav" [activeId]="1" class="nav-pills nav-justified"  >
+                <li [ngbNavItem]="1" (click)="chengingAction()">
                     <a ngbNavLink>
                         <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                         <span>Upload</span>
@@ -22,7 +22,7 @@
                         <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
                     </ng-template>
                 </li>
-                <li [ngbNavItem]="2">
+                <li [ngbNavItem]="2" (click)="chengingAction()">
                     <a ngbNavLink>
                         <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                         <span>Type</span>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <form action="" [formGroup]="checkOutForm" (ngSubmit)="onSubmitCheckOut()">
+                                    <form action="" [formGroup]="checkOutForm" (ngSubmit)="onSubmitImg()">
                                         <div class="col mt-2 text-center">
                                             <label for=""> Upload File </label>
                                             <input type="file" formControlName="order_image" class="form-control" (change)="onFileChange($event)" placeholder="Name">

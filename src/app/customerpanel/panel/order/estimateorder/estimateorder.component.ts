@@ -18,11 +18,7 @@ export class EstimateorderComponent implements OnInit {
   checkOutForm: FormGroup ;
   updateId: number;
   getData:any;
-   addressId:any;
-
-
-
-
+  addressId:any;
 
   constructor(
     private fb: FormBuilder,
@@ -88,7 +84,7 @@ export class EstimateorderComponent implements OnInit {
     }
   }
 
-  onSubmitCheckOut(){
+  onSubmitImg(){
 
     if(this.addressId == undefined){
       this.toastr.info("Could you please select the Address!")
@@ -111,9 +107,13 @@ export class EstimateorderComponent implements OnInit {
 
   receiveAddressEvent(event:any){
      this.addressId = event;
-  //   alert(this.addressId);
      return this.addressId;
   }
 
+  chengingAction(){
+    if(this.addressId != undefined){
+      this.addressId = undefined;
+    }
+  }
 
 }
