@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://restapi.businesshai.com/',
+  //baseUrl: 'https://restapi.businesshai.com/',
+  baseUrl: 'http://localhost:8080/',
   defaultauth: 'fackbackend',
   OAUTH_CLIENT: 'testclient',
   OAUTH_SECRET: 'testsecret',
