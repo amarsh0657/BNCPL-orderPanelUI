@@ -19,7 +19,6 @@ export class EstimateorderComponent implements OnInit {
   updateId: number;
   getData:any;
   addressId:any;
-  visible = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +34,7 @@ export class EstimateorderComponent implements OnInit {
     this.checkOutForm = this.fb.group({
       address_id: [''],
       order_image: [ null,[Validators.required] ],
+
     })
 
   }
@@ -85,10 +85,9 @@ export class EstimateorderComponent implements OnInit {
   }
 
   onSubmitImg(){
-      this.visible = true;
+
     if(this.addressId == undefined){
       this.toastr.info("Could you please select the Address!")
-      this.visible = false;
     }else {
 
     const formData = new FormData();
@@ -100,10 +99,6 @@ export class EstimateorderComponent implements OnInit {
         this.toastr.success(res.msg)
         this.checkOutForm.reset();
         this.addressId = undefined
-        this.visible = false;
-     },
-     error => {
-       this.visible = false;
      }
    )
     }

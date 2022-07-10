@@ -42,14 +42,8 @@
 
             <app-order-address (addressEvent)="receiveAddressEvent($event)"></app-order-address>
 
-            <div class="col mt-5 text-center"  *ngIf="!visible">
+            <div class="col mt-5 text-center">
               <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary shadow-sm" >Estimate Request</button></div>
-            </div>
-
-            <div class="col mt-5 text-center"  *ngIf="visible">
-              <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary shadow-sm" >
-                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-              </button></div>
             </div>
           </form>
 
