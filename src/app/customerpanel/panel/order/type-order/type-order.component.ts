@@ -12,6 +12,7 @@ import {OrderService} from "../../../../core/customer/order/order.service";
 export class TypeOrderComponent implements OnInit {
   typeOrderFrom: FormGroup;
   addressId:any;
+  visible = false;
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -49,19 +50,25 @@ export class TypeOrderComponent implements OnInit {
 
 
   onSubmit(){
+    this.visible = true;
     if(this.addressId == undefined) {
       this.toastr.info("Could you please select the Address!")
+      this.visible = false;
     }else {
       const formData = new FormData();
     formData.append('multiItem',JSON.stringify(this.typeOrderFrom.get('multiItem')?.value)  )
     formData.append('addressId', this.addressId )
-    alert( JSON.stringify(this.typeOrderFrom.value));
+   // alert( JSON.stringify(this.typeOrderFrom.value));
 
       this.order.estimateTypeRequest(formData).subscribe(
         (res:any) => {
           this.toastr.success(res.msg)
           this.typeOrderFrom.reset();
           this.addressId = undefined
+          this.visible = false;
+        },
+        error =>{
+          this.visible = false;
         }
       )
     }
@@ -69,7 +76,6 @@ export class TypeOrderComponent implements OnInit {
 
   receiveAddressEvent(event:any){
     this.addressId = event;
-    alert(this.addressId)
     return this.addressId;
   }
 
