@@ -23,6 +23,7 @@ export class OrdertrackComponent implements OnInit {
   getEstimateItem:any;
   getEstimateItemDetails: any;
   orderId: any;
+  myOrderData:any;
   constructor(
         private getService: GetrequiestService,
         private router : ActivatedRoute,
@@ -81,10 +82,24 @@ export class OrdertrackComponent implements OnInit {
     this.getEstItemData(orderId);
     this.getEstItemDetails(orderId);
   }
+
+
+
+
   confirmModal(modal:any, orderId:any){
    this.modalService.open(modal, {size:'xl', centered:false});
    this.orderId = orderId;
   }
+
+
+  getMyOrderModal(modal:any, orderId:number){
+    this.getService.getMyOrderItemDetails(orderId).subscribe((res) =>{
+      this.myOrderData = res;
+    })
+    this.modalService.open(modal, {size:'sm', centered:false});
+  }
+
+
   getEstItemData(orderId:number){
     return this.getService.getEstimateItem(orderId).subscribe(
       (res:any) => {
@@ -98,8 +113,10 @@ export class OrdertrackComponent implements OnInit {
   getEstItemDetails(orderId:number){
     return this.getService.getEstimateItemDetails(orderId).subscribe(
       res => {
-        console.log("hey"+res  );
-        this.getEstimateItemDetails =res;
+          this.getEstimateItemDetails =res;
+       //   console.log(this.getEstimateItemDetails.length)
+
+
       }
     )
   }
@@ -137,6 +154,7 @@ export class OrdertrackComponent implements OnInit {
   }
 
   //Estimate Confirm
+
   onSubModification(){
     const  formData = new FormData();
     formData.append('customer_msg' , this.modificationForm.get('customer_msg')?.value)

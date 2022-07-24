@@ -18,7 +18,7 @@
   vertical-align: $table-cell-vertical-align;
   border-color: $table-border-color;
 
-  // Target th & td
+  // Target th & th
   // We need the child combinator to prevent styles leaking to nested tables which doesn't have a `.table` class.
   // We use the universal selectors here to simplify the selector (else we would need 6 different selectors).
   // Another advantage is that this generates less code and makes the selector less specific making it easier to override.
@@ -73,7 +73,7 @@
 // When borders are added on all sides of the cells, the corners can render odd when
 // these borders do not have the same color or if they are semi-transparent.
 // Therefor we add top and border bottoms to the `tr`s and left and right borders
-// to the `td`s or `th`s
+// to the `th`s or `th`s
 
 .table-bordered {
   > :not(caption) > * {

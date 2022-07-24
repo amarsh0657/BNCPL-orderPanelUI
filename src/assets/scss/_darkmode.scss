@@ -243,7 +243,7 @@
     .tabs .nav-item > .nav-link:not(.active) {
         --finwallapp-theme-color: var(--finwallapp-theme-text);
     }
-    .chartdoughnut > .datadisplay {
+    .charthoughnut > .datadisplay {
         --finwallapp-theme-text: var(--finwallapp-theme-color);
     }
     .btn-light {
@@ -318,7 +318,7 @@
         .calendar-table .prev span {
             border-color: var(--finwallapp-theme-text);
         }
-        td {
+        th {
             &.off {
                 background-color: var(--finwallapp-card-color) !important;
             }

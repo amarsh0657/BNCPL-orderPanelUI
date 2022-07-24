@@ -359,7 +359,7 @@ caption {
 }
 
 // 1. Removes font-weight bold by inheriting
-// 2. Matches default `<td>` alignment by inheriting `text-align`.
+// 2. Matches default `<th>` alignment by inheriting `text-align`.
 // 3. Fix alignment for Safari
 
 th {
@@ -372,7 +372,7 @@ thead,
 tbody,
 tfoot,
 tr,
-td,
+th,
 th {
   border-color: inherit;
   border-style: solid;

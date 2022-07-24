@@ -55,7 +55,10 @@ export class GetrequiestService {
     return  this.http.get( environment.baseUrl + 'get-Estimate-item/' + orderId);
   }
   getEstimateItemDetails(orderId: number){
-    return  this.http.get( environment.baseUrl + 'get-Estimate-details/' + orderId);
+    return  this.http.get( environment.baseUrl + 'customer/get-order-details/' + orderId);
+  }
+  getMyOrderItemDetails(orderId: number){
+    return  this.http.get( environment.baseUrl + 'customer/get-myOrder-details/' + orderId);
   }
 
   confirmEst(orderId:any, formData:any){

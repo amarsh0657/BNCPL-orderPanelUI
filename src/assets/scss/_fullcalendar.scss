@@ -6,7 +6,7 @@
         text-decoration: none;
     }
     .fc-toolbar-title{
-       
+
         font-size: 16px;
     }
     .fc-button{
@@ -17,10 +17,10 @@
     .fc-toolbar.fc-header-toolbar {
         margin-bottom: 0em;
         padding: 10px 15px;
-       
+
 
         .fc-button{
-           
+
             &:focus{
                 box-shadow: none;
                 outline: none;
@@ -28,41 +28,41 @@
         }
     }
     &.fc-theme-standard {
-        table{ 
+        table{
             border: 0 none;
             border-collapse: collapse;
             th{
-                
+
                 font-size: 14px;
                 text-decoration: none;
                 padding: 10px 0;
                 line-height: 20px;
                 border:none;
 
-                a.fc-col-header-cell-cushion {                   
+                a.fc-col-header-cell-cushion {
                     font-weight: normal;
                 }
             }
-            
-            td{
+
+            th{
                 border: none;
             }
             table{
-                td{
+                th{
                     background-color: transparent;
                     color: inherit;
                     font-size: 14px;
                     text-decoration: none;
-                    padding: 0; 
+                    padding: 0;
                     border: 1px solid rgba(190,190,190,0.3);
-    
+
                     a{
                         color: inherit;
                         font-weight: normal;
                     }
-                    
+
                     .fc-daygrid-more-link{
-                        font-size: 10px; 
+                        font-size: 10px;
                     }
                     .fc-daygrid-day-events {
                         margin-top: -8px;
@@ -77,12 +77,12 @@
                     }
                 }
                 tr:first-child{
-                    td{
+                    th{
                         border-bottom: none
                     }
                 }
                 tr:last-child{
-                    td{
+                    th{
                         border-bottom: none
                     }
                 }
@@ -93,7 +93,7 @@
 
 
 @media screen and (max-width:480px){
-    .fc.fc-theme-standard table table td .fc-daygrid-more-link{
+    .fc.fc-theme-standard table table th .fc-daygrid-more-link{
         height: 8px;
         width: 8px;
         border-radius: 5px;
@@ -125,7 +125,7 @@
     border-radius: 10px;
     border: 0;
     background-color: var(--finwallapp-card-color);
-  
+
     &:before,
     &:after {
       display: none;
@@ -138,7 +138,7 @@
        // color: $text-color-theme-secondary;
         background: transparent;
         font-size: 14px;
-      }    
+      }
       .cancelBtn {
         color: var(--finwallapp-theme-color-light);
         background: transparent;
@@ -164,11 +164,11 @@
         border: 0;
         background: transparent;
         th,
-        td {
+        th {
           line-height: 28px;
-  
+
           &.off,
-          &.off.start-date,        
+          &.off.start-date,
           &.off.end-date {
             background-color: var(--finwallapp-theme-text);
           }
@@ -186,4 +186,3 @@
       }
     }
   }
-  

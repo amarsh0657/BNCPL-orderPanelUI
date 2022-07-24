@@ -36,8 +36,8 @@
   a{
       text-decoration: none;
   }
-  .fc-toolbar-title{   
-      margin: 0  !important;   
+  .fc-toolbar-title{
+      margin: 0  !important;
       font-size: 16px !important;
   }
   .fc-button{
@@ -57,11 +57,11 @@
       }
   }
   &.fc-theme-standard {
-      table{ 
+      table{
           border: 0 none;
           border-collapse: collapse;
           th{
-             
+
               font-size: 14px;
               text-decoration: none;
               padding: 10px 0;
@@ -72,25 +72,25 @@
                   font-weight: normal;
               }
           }
-          
-          td{
+
+          th{
               border: none;
           }
           table{
-              td{
+              th{
                   background-color: transparent;
                   color: inherit;
                   font-size: 14px;
                   text-decoration: none;
-                  padding: 0; 
-  
+                  padding: 0;
+
                   a{
                       color: inherit;
                       font-weight: normal;
                   }
-                  
+
                   .fc-daygrid-more-link{
-                      font-size: 10px; 
+                      font-size: 10px;
                   }
                   .fc-daygrid-day-events {
                       margin-top: -8px;
@@ -105,12 +105,12 @@
                   }
               }
               tr:first-child{
-                  td{
+                  th{
                       border-bottom: none
                   }
               }
               tr:last-child{
-                  td{
+                  th{
                       border-bottom: none
                   }
               }
@@ -121,7 +121,7 @@
 
 
 @media screen and (max-width:480px){
-  .fc.fc-theme-standard table table td .fc-daygrid-more-link{
+  .fc.fc-theme-standard table table th .fc-daygrid-more-link{
       height: 8px;
       width: 8px;
       border-radius: 5px;
