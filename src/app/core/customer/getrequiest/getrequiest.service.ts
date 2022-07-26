@@ -73,4 +73,7 @@ export class GetrequiestService {
     return this.http.post( environment.baseUrl + 'customer/estimate-modification/' + orderId, formData);
   }
 
+  deliveryAction(orderId:any, formData:any){
+    return this.http.post( environment.baseUrl + 'customer/delivered/' + orderId, formData);
+  }
 }

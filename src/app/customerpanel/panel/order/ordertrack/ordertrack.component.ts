@@ -19,17 +19,22 @@ export class OrdertrackComponent implements OnInit {
   estConfirm: FormGroup;
   estReject: FormGroup;
   modificationForm: FormGroup;
+  pinVerify: FormGroup;
   getEstimateDetails: any;
   getEstimateItem:any;
   getEstimateItemDetails: any;
   orderId: any;
   myOrderData:any;
+  successClass:any;
+  successClass1:any;
+  getOrderId:any;
   constructor(
         private getService: GetrequiestService,
         private router : ActivatedRoute,
         private modalService: NgbModal,
         private fb: FormBuilder,
-        private ts: ToastrService
+        private ts: ToastrService,
+        private routert: Router
 
   ) { }
 
@@ -37,6 +42,7 @@ export class OrdertrackComponent implements OnInit {
     const id = this.router.snapshot.paramMap.get('id');
     this.getDetails( this.getid(id));
     this.getEstItemDetails(this.getid(id));
+    this.getOrderId = id;
     //Estimate Confirm
     this.estConfirm = this.fb.group({
       customer_msg : ['Type the message if you are suggesting an improvement or change...']
@@ -46,8 +52,12 @@ export class OrdertrackComponent implements OnInit {
       customer_msg : ['Type the message if you are suggesting an improvement or change...']
     })
 
+
     this.modificationForm = this.fb.group({
       customer_msg : [null]
+    })
+    this.pinVerify = this.fb.group({
+      pinCode : [null]
     })
 
   }
@@ -114,6 +124,14 @@ export class OrdertrackComponent implements OnInit {
     return this.getService.getEstimateItemDetails(orderId).subscribe(
       res => {
           this.getEstimateItemDetails =res;
+
+        if(this.getEstimateItemDetails[0]['delivery_status'] === 'onWay'){
+          this.successClass ="border-success";
+        }
+        if(this.getEstimateItemDetails[0]['estimate_status'] === 'delivered'){
+          this.successClass1 ="border-success";
+        }
+
        //   console.log(this.getEstimateItemDetails.length)
 
 
@@ -168,6 +186,26 @@ export class OrdertrackComponent implements OnInit {
 
       }
     )
+  }
+
+  onPinSubmit(){
+    const  formData = new FormData();
+    formData.append('pin_code' , this.pinVerify.get('pinCode')?.value)
+
+   return  this.getService.deliveryAction(this.getOrderId,formData).subscribe(
+      (res:any)=>{
+        this.ts.success(res.msg);
+        this.routert.navigate(['/panel/order/order-track/' +this.getOrderId ]);
+      }
+      ,
+      (error:any )=> {
+      //  console.log(error.error.messages.msg);
+        this.ts.error(error.error.messages.msg)
+      }
+    )
+
+    alert(JSON.stringify(this.pinVerify.value));
+
   }
 
 }

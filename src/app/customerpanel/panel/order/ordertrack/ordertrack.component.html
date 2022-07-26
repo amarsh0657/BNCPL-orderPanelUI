@@ -114,7 +114,7 @@
                   </li>
 
 
-                    <li class="list-group-item disable " *ngIf="getEstimateItemDetails[0]['estimate_status'] == 'conformation' || getEstimateItemDetails[0]['estimate_status'] == 'invoice_send'  ">
+                    <li class="list-group-item disable " *ngIf="getEstimateItemDetails[0]['estimate_status'] == 'conformation' || getEstimateItemDetails[0]['estimate_status'] == 'invoice_send' || getEstimateItemDetails[0]['estimate_status'] === 'delivered' ">
                         <span class="avatar avatar-15 border-success rounded-circle "></span>
                         <p><span class="text-primary">Estimate Confirmed</span><br>
                           <button type="button" class="btn btn-sm btn-primary"
@@ -130,14 +130,15 @@
                           <br/><small class="text-muted "> {{getEstimateItemDetails[0]['estimate_date'] | date: 'medium'}}</small>
                         </p>
                     </li>
-                  <li class="list-group-item" *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send'">
+               <!--   <li class="list-group-item" *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send' ">-->
+                  <li class="list-group-item" *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send' && getEstimateItemDetails[0]['order_status'] !== 'completed' ">
                     <span class="avatar avatar-15 rounded-circle "></span>
                     <p class="bg-soft"><span class="text-secondary ">Invoice</span>
                       <br/><small class="text-muted "> Waiting for Update</small>
                       <!-- <br/><small class="text-muted ">2 Aug 2021,6:30 pm</small>-->
                     </p>
                   </li>
-                    <li class="list-group-item" *ngIf="getEstimateItemDetails[0]['estimate_status'] === 'invoice_send'">
+                    <li class="list-group-item" *ngIf="getEstimateItemDetails[0]['estimate_status'] === 'invoice_send' || getEstimateItemDetails[0]['estimate_status'] === 'delivered'">
                         <span class="avatar avatar-15 border-success rounded-circle  "></span>
                         <p class="bg-soft"><span class="text-muted"> Your is Invoice Arrived  </span> <br>
                           <button type="button" class="btn btn-sm btn-primary"
@@ -147,15 +148,16 @@
                           <br/><small class="text-muted "> {{getEstimateItemDetails[0]['estimate_date'] | date: 'medium'}}</small>
                         </p>
                     </li>
-                  <li class="list-group-item " *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send'">
+                  <li class="list-group-item " *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send' && getEstimateItemDetails[0]['estimate_status'] !== 'delivered'">
                     <span class="avatar avatar-15 rounded-circle "></span>
                     <p><span class="text-secondary ">Shipment</span>
                       <br/><small class="text-muted ">  Waiting for Update</small>-
                       <!-- <br/><small class="text-muted ">3 Aug 2021,6:30 pm</small>-->
                     </p>
                   </li>
-                    <li class="list-group-item " *ngIf="getEstimateItemDetails[0]['estimate_status'] === 'invoice_send'">
-                        <span class="avatar avatar-15 rounded-circle "></span>
+                    <li class="list-group-item"  *ngIf="getEstimateItemDetails[0]['estimate_status'] === 'invoice_send'|| getEstimateItemDetails[0]['estimate_status'] === 'delivered'">
+                        <span [ngClass]="successClass" [ngClass]="successClass1"
+                              class="avatar avatar-15 rounded-circle" id="shipment"></span>
                         <p><span class="text-secondary ">Shipment Person Details</span>
                           <br/>
                           <small class="text-muted "> Name: {{getEstimateItemDetails[0]['delivery_person_name'] | uppercase}}  </small>
@@ -163,8 +165,12 @@
                           <small class="text-muted "> Mobile: {{getEstimateItemDetails[0]['delivery_person_mobile'] | uppercase}}  </small>
                            <!-- <br/><small class="text-muted ">3 Aug 2021,6:30 pm</small>-->
                         </p>
+                      <form *ngIf="getEstimateItemDetails[0]['delivery_status'] === 'onWay'"  [formGroup]="pinVerify" (ngSubmit)="onPinSubmit()"    >
+                        <input type="password" formControlName="pinCode" placeholder="Enter Pin " > |
+                        <button class="btn btn-sm btn-success">verify</button>
+                      </form>
                     </li>
-                  <li class="list-group-item " *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send'">
+                  <li class="list-group-item " *ngIf="getEstimateItemDetails[0]['estimate_status'] !== 'invoice_send' && getEstimateItemDetails[0]['estimate_status'] !== 'delivered' ">
                     <span class="avatar avatar-15 rounded-circle "></span>
                     <p><span class="text-secondary ">Delivered</span>
                       <br/><small class="text-muted "> Waiting for Update</small>
@@ -178,6 +184,12 @@
                            <br/><small class="text-muted "> {{getEstimateItemDetails[0]['delivery_end_date'] | date: 'medium'}}</small>
                         </p>
                     </li>
+                  <li class="list-group-item " *ngIf="getEstimateItemDetails[0]['estimate_status'] === 'delivered'">
+                    <span class="avatar avatar-15 rounded-circle "  [ngClass]="successClass1"></span>
+                    <p><span class="text-secondary ">Delivered Successfully</span>
+
+                    </p>
+                  </li>
 
                 </ul>
             </div>
